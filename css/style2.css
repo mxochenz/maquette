@@ -1,6 +1,6 @@
 * {
-  /* margin: 0;
-  padding: 0; */
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -17,15 +17,16 @@ header,
 footer {
   background-color: #dedede;
 }
-header .container > div {
+
+header .container div:first-child,
+header .container div:nth-child(2) {
   text-align: center;
-}
-header .container > div > a {
   display: inline-block;
+  vertical-align: middle;
 }
-header .container > div > span {
+
+header .container div span {
   display: inline-block;
-  margin-bottom: 1rem;
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -34,21 +35,24 @@ header nav ul {
   list-style-type: none;
   padding-left: 0;
   text-align: center;
+  background-color: #40d6b0;
 }
 
 header nav ul li {
   display: inline-block;
-  background-color: burlywood;
 }
 
 /* inline block sinon le lien ne prends pas le padding */
 header nav ul li a {
   display: inline-block;
-  padding: 50px;
+  padding: 8px;
+  text-transform: uppercase;
 }
+
 h1 {
   text-align: center;
   font-size: 2.5rem;
+  margin: 50px;
 }
 
 h2 {
@@ -61,10 +65,12 @@ h3 {
   padding: 10px 0;
   text-align: center;
 }
+
 p {
   line-height: 1.5rem;
   margin-bottom: 20px;
 }
+
 a {
   text-decoration: none;
   color: black;
@@ -72,6 +78,10 @@ a {
 
 main .container {
   padding: 20px;
+}
+
+main .breadcrumb {
+  border-bottom: 1px solid #40d6b0;
 }
 
 main .breadcrumb ol {
@@ -84,12 +94,15 @@ main .breadcrumb ol li {
   text-transform: uppercase;
   font-weight: 500;
 }
+
 main .breadcrumb ol li a {
   color: #40d6b0;
 }
+
 main .breadcrumb ol li a:hover {
   text-decoration: underline;
 }
+
 main .breadcrumb ol li:not(:last-child)::after {
   content: " > ";
 }
@@ -98,6 +111,7 @@ main .container p a {
   color: #40d6b0;
   font-weight: 600;
 }
+
 main .container p a:hover {
   text-decoration: underline;
 }
@@ -108,13 +122,16 @@ main .container p a:hover {
   justify-content: center;
   gap: 1rem;
 }
+
 .products article {
   border: 1px solid #40d6b0;
+  text-align: center;
 }
 
 .products article img {
   width: 100%;
 }
+
 .products article span {
   display: block;
   text-align: center;
@@ -123,11 +140,47 @@ main .container p a:hover {
 
 .products article a {
   display: inline-block;
+  max-width: 35%;
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
-  background-color: burlywood;
+  background-color: #40d6b0;
 }
+
+.tableau {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+table caption {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+table th,
+table td {
+  padding: 10px;
+  border: 1px solid #dedede;
+  text-align: center;
+}
+
+table th {
+  background-color: #40d6b0;
+}
+
+table tr:nth-child(odd) {
+  background-color: rgba(158, 114, 75, 0.20);
+}
+
+table td {
+  min-width: 200px;
+}
+
 .bandeau {
   background-color: #40d6b0;
   margin: 100px 0;
@@ -136,14 +189,27 @@ main .container p a:hover {
   font-size: 2rem;
 }
 
+.listes {
+  margin: 100px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
 .listes ul,
 .listes ol {
-  display: inline-block;
-  width: 49%;
-  line-height: 1.5rem;
+  line-height: 1.8rem;
   list-style-type: none;
   padding: 0;
 }
+
+.listes ul li::marker {
+  content: '🐈 ';
+}
+
+.listes ol li::marker {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' viewBox='0 0 512 512'%3E%3C!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--%3E%3Cpath d='M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5l0 1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3l0-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z'/%3E%3C/svg%3E") ' ';
+}
+
 
 footer .container {
   display: flex;
@@ -155,10 +221,12 @@ footer .container {
 footer .container div:not(:last-child) {
   margin-bottom: 1rem;
 }
+
 footer .container ul {
   list-style-type: none;
   padding: 0;
 }
+
 footer .container ul li {
   line-height: 1.6rem;
 }
@@ -181,9 +249,14 @@ footer .container ul li {
   body {
     border-top: 5px solid green;
   }
+
   .container {
     width: 768px;
     margin: auto;
+  }
+
+  .listes {
+    margin: 100px auto;
   }
 }
 
@@ -192,15 +265,18 @@ footer .container ul li {
   body {
     border-top: 5px solid blue;
   }
+
   .container {
     width: 992px;
   }
+
   p {
     display: inline-block;
     width: 49%;
     vertical-align: top;
     margin-bottom: 0;
   }
+
   footer .container {
     flex-direction: row;
     justify-content: space-between;
@@ -212,6 +288,7 @@ footer .container ul li {
   body {
     border-top: 5px solid indigo;
   }
+
   .container {
     width: 1199px;
   }
