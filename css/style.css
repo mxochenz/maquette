@@ -24,18 +24,32 @@ header nav ul {
   text-align: center;
 }
 
-header nav ul li {
-  display: inline-block;
-  background-color: burlywood;
+header nav ul ul {
+  display: none;
+}
+header nav > ul li {
+  position: relative;
+}
+
+header nav > ul > li:focus > ul,
+header nav > ul > li:hover > ul {
+  display: block;
 }
 
 /* inline block sinon le lien ne prends pas le padding */
-header nav ul li a {
-  display: inline-block;
-  padding: 50px;
+header nav > ul > li a {
+  display: block;
+  padding: 10px;
+  background-color: black;
+  color: burlywood;
+  text-decoration: none;
 }
 
-h2 {
+header nav > ul > li > a {
+  background-color: burlywood;
+  color: black;
+}
+nav h2 {
   border-bottom: 1px solid #40d6b0;
   padding-bottom: 10px;
   margin-bottom: 50px;
@@ -120,6 +134,24 @@ table th {
 
   .container {
     width: 992px;
+  }
+
+  header nav > ul > li {
+    display: inline-block;
+  }
+
+  /* inline block sinon le lien ne prends pas le padding */
+  header nav > ul > li > a {
+    display: inline-block;
+    padding: 25px;
+  }
+
+  header nav ul ul {
+    position: absolute;
+  }
+
+  header nav ul ul a {
+    border-bottom: 1px solid burlywood;
   }
 
   .products article {
