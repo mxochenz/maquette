@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin avec Tableau</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo"><img src="chenz-logo.png" alt=""></div>
+    <nav class="header-nav">
+      <ul>
+        <li><a href="#profile">Profil</a></li>
+        <li><a href="#notifications">Notifications</a></li>
+        <li><a href="#logout">Déconnexion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <ul>
+        <li><a href="#dashboard"><i class="fas fa-home"></i><span>Admin Panel</span></a></li>
+        <li><a href="#users"><i class="fas fa-users"></i><span>Utilisateurs</span></a></li>
+        <li><a href="#settings"><i class="fas fa-cog"></i><span>Paramètres</span></a></li>
+        <li><a href="#logout"><i class="fas fa-sign-out-alt"></i><span>Déconnexion</span></a></li>
+      </ul>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="main-content">
+      <!-- Titre, Recherche et Bouton -->
+      <div class="main-header">
+        <h1>Gestion des Utilisateurs</h1>
+        <div class="actions">
+          <input type="text" placeholder="Rechercher..." class="search-bar">
+          <button class="add-button"><i class="fa-solid fa-magnifying-glass"></i></i> Rechercher</button>
+        </div>
+        <button class="add-button"><i class="fas fa-plus"></i> Ajouter</button>
+      </div>
+
+      <!-- Tableau -->
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Lignes d'exemple -->
+          <tr>
+            <td>1</td>
+            <td>José Garranas</td>
+            <td>jose.garranas@example.com</td>
+            <td>Admin</td>
+            <td><button class="edit-btn">Modifier</button> <button class="delete-btn">Supprimer</button></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Marie Curie</td>
+            <td>marie.curie@example.com</td>
+            <td>Utilisateur</td>
+            <td><button class="edit-btn">Modifier</button> <button class="delete-btn">Supprimer</button></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Jean Doe</td>
+            <td>jean.Doe@example.com</td>
+            <td>Utilisateur</td>
+            <td><button class="edit-btn">Modifier</button> <button class="delete-btn">Supprimer</button></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>John Cruise</td>
+            <td>john.cruise@example.com</td>
+            <td>Utilisateur</td>
+            <td><button class="edit-btn">Modifier</button> <button class="delete-btn">Supprimer</button></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Marie lorem</td>
+            <td>marie.lorem@example.com</td>
+            <td>Utilisateur</td>
+            <td><button class="edit-btn">Modifier</button> <button class="delete-btn">Supprimer</button></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Jane Doe</td>
+            <td>jane.doe@example.com</td>
+            <td>Utilisateur</td>
+            <td><button class="edit-btn">Modifier</button> <button class="delete-btn">Supprimer</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button class="page-btn">«</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">»</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Mon Entreprise. Tous droits réservés.</p>
+  </footer>
+</body>
+
+</html>
