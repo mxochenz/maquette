@@ -3,178 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel Admin</title>
-    <!-- CSS Custom -->
+    <title>Structure dashboard</title>
     <link rel="stylesheet" href="css/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
   <body>
     <header>
-      <div class="header_box">
-        <div class="brand">
-          <div class="brand_logo">
-            <a href="">
-              <img
-                src="images/logo.png"
-                alt="Logo Café aux dés"
-                id="logoSite"
-              />
-            </a>
-          </div>
-
-          <div class="brand_name">
-            <span id="nomSite">Café aux dés</span>
-          </div>
-        </div>
-
-        <div class="info">
-          <!-- Login et parametres | change mode | langue | contact assistance ? -->
-          <ul class="list_style_none">
-            <li>Login</li>
-            <li>Langues</li>
-            <li>contact</li>
-            <li>toggle</li>
-          </ul>
-        </div>
+      <div>
+        <img src="adminpanel/chenz-logo.png" alt="" />
+        <span>BACK OFFICE</span>
+      </div>
+      <div>
+        <span>John Doe</span>
+        <a href="">Se déconnecter</a>
       </div>
     </header>
-    <main class="container">
-      <div class="grid">
-        <div class="sidebar">
-          <nav>
-            <ul>
-              <li class="active">
-                <a href="#">
-                  <i class="fa fa-home fa-2x"></i>
-                  <span class="nav-text"> Nav 1 </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-globe fa-2x"></i>
-                  <span class="nav-text"> Nav 2 </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-comments fa-2x"></i>
-                  <span class="nav-text"> Nav 3 </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-camera-retro fa-2x"></i>
-                  <span class="nav-text"> Nav 4 </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-cogs fa-2x"></i>
-                  <span class="nav-text"> Nav 5 </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-info fa-2x"></i>
-                  <span class="nav-text"> Nav 6 </span>
-                </a>
-              </li>
-            </ul>
-
-            <ul class="logout">
-              <li>
-                <a href="#">
-                  <i class="fa fa-power-off fa-2x"></i>
-                  <span class="nav-text"> Nav 7 </span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="content">
-          <div class="content_header">
-            <div class="title"><h1>Titre Page</h1></div>
-
-            <div class="searchbar">
-              <input type="text" />
-              <input type="text" />
-              <input type="text" />
-              <button type="submit"></button>
-            </div>
-
-            <div class="cta">
-              <button>Ajouter</button>
-            </div>
-          </div>
-
-          <div class="content_body">
-            <!-- Tableau -->
-            <div class="tableau">
-              <table>
-                <caption>
-                  Liste des produits 2025
-                </caption>
-                <thead>
-                  <tr>
-                    <th>Reférence</th>
-                    <th>Nom du produit</th>
-                    <th>Prix</th>
-                    <th>Stock</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Produit 1</td>
-                    <td>999.99€</td>
-                    <td>5</td>
-                    <td>
-                      <button>Modifier</button>
-                      <button>Details</button>
-                      <button>Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Produit 2</td>
-                    <td>899.99€</td>
-                    <td>7</td>
-                    <td>
-                      <button>Modifier</button>
-                      <button>Details</button>
-                      <button>Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Produit 3</td>
-                    <td>799.99€</td>
-                    <td>3</td>
-                    <td>
-                      <button>Modifier</button>
-                      <button>Details</button>
-                      <button>Delete</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="content_footer">
-            <ul class="list_style_none">
-              <li><a href="">1</a></li>
-              <li><a href="">2</a></li>
-              <li><a href="">3</a></li>
-              <li><a href="">...</a></li>
-              <li><a href="">10</a></li>
-            </ul>
-          </div>
-        </div>
+    <nav>
+      <ul>
+        <li class="active">
+          <a href="">Menu 1 <i class="fa-solid fa-house"></i></a>
+        </li>
+        <li>
+          <a href="">Menu 2 <i class="fa-solid fa-user"></i></a>
+        </li>
+        <li>
+          <a href="">Menu 3 <i class="fa-solid fa-gear"></i></a>
+        </li>
+        <li>
+          <a href="">Menu 4 <i class="fa-solid fa-right-from-bracket"></i></a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <div class="container">
+        <h1>Admin Planel</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab est
+          temporibus exercitationem esse, consequuntur ullam ad dolorem, facere
+          doloribus perferendis corporis nemo, eligendi adipisci? Laudantium vel
+          earum corporis temporibus saepe!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab est
+          temporibus exercitationem esse, consequuntur ullam ad dolorem, facere
+          doloribus perferendis corporis nemo, eligendi adipisci? Laudantium vel
+          earum corporis temporibus saepe!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab est
+          temporibus exercitationem esse, consequuntur ullam ad dolorem, facere
+          doloribus perferendis corporis nemo, eligendi adipisci? Laudantium vel
+          earum corporis temporibus saepe!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab est
+          temporibus exercitationem esse, consequuntur ullam ad dolorem, facere
+          doloribus perferendis corporis nemo, eligendi adipisci? Laudantium vel
+          earum corporis temporibus saepe!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab est
+          temporibus exercitationem esse, consequuntur ullam ad dolorem, facere
+          doloribus perferendis corporis nemo, eligendi adipisci? Laudantium vel
+          earum corporis temporibus saepe!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab est
+          temporibus exercitationem esse, consequuntur ullam ad dolorem, facere
+          doloribus perferendis corporis nemo, eligendi adipisci? Laudantium vel
+          earum corporis temporibus saepe!
+        </p>
       </div>
     </main>
-    <!-- footer option -->
-    <footer class="container">
-      <span>Version 1.0.2</span>
-    </footer>
   </body>
 </html>
