@@ -59,6 +59,27 @@ nav h2 {
   width: 100%;
 }
 
+main .container-sticky {
+  display: flex;
+  background-color: #dedede;
+}
+
+main .container-sticky > div:not(.sticky-list) {
+  box-sizing: border-box;
+  width: 75%;
+}
+
+main .container-sticky > div.sticky-list {
+  box-sizing: border-box;
+  width: 25%;
+}
+
+main .container-sticky > div.sticky-list > div {
+  border: 1px solid goldenrod;
+  position: sticky;
+  top: 30px;
+}
+
 main .container {
   padding: 20px;
 }
