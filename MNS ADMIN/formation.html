@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portail de Formation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Menu latéral */
+    .sidebar {
+      width: 250px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px 0;
+      height: 100vh;
+      position: fixed;
+    }
+
+    .menu-title {
+      font-size: 20px;
+      padding: 15px 20px;
+      border-bottom: 1px solid #3d566e;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: #ecf0f1;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .menu-item:hover,
+    .menu-item.active {
+      background-color: #34495e;
+      border-left: 4px solid #3498db;
+    }
+
+    .menu-item i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    /* Contenu principal */
+    .main-content {
+      flex: 1;
+      margin-left: 250px;
+      padding: 30px;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page-title {
+      font-size: 24px;
+      margin-bottom: 25px;
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+
+    /* Formulaire de demande de formation */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+    }
+
+    .btn-secondary {
+      background-color: #95a5a6;
+    }
+
+    .btn-secondary:hover {
+      background-color: #7f8c8d;
+    }
+
+    /* Page Mon dossier */
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .formation-item {
+      padding: 15px;
+      border-left: 3px solid #3498db;
+      background-color: #f8f9fa;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+
+    .formation-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .formation-info {
+      display: flex;
+      justify-content: space-between;
+      color: #7f8c8d;
+      font-size: 14px;
+    }
+
+    .formation-status {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .status-pending {
+      background-color: #f39c12;
+      color: white;
+    }
+
+    .status-approved {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .status-rejected {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .status-completed {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .profile-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #3498db;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-right: 20px;
+    }
+
+    .profile-details h3 {
+      margin-bottom: 5px;
+    }
+
+    .profile-details p {
+      color: #7f8c8d;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Menu latéral -->
+    <div class="sidebar">
+      <p class="menu-title">Formation</p>
+      <a href="#" class="menu-item" onclick="showDemandeFormationForm()">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Nouvelles formations</span>
+      </a>
+      <a href="#" class="menu-item" onclick="showDossierPage()">
+        <i class="fas fa-folder"></i>
+        <span>Mon dossier</span>
+      </a>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+      <!-- Page de demande de formation -->
+      <div id="demande-formation" class="page">
+        <h2 class="page-title">Demande de formation</h2>
+
+        <form id="formation-form">
+          <div class="form-group">
+            <label for="formation-title">Intitulé de la formation</label>
+            <input type="text" id="formation-title" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="formation-organisme">Organisme de formation</label>
+            <input type="text" id="formation-organisme" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="formation-dates">Dates souhaitées</label>
+            <div style="display: flex; gap: 10px;">
+              <input type="date" id="formation-date-debut" class="form-control" style="width: 50%;" required>
+              <input type="date" id="formation-date-fin" class="form-control" style="width: 50%;" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="formation-duree">Durée (en heures)</label>
+            <input type="number" id="formation-duree" class="form-control" min="1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="formation-cout">Coût estimé (€)</label>
+            <input type="number" id="formation-cout" class="form-control" min="0" step="0.01" required>
+          </div>
+
+          <div class="form-group">
+            <label for="formation-objectifs">Objectifs de la formation</label>
+            <textarea id="formation-objectifs" class="form-control" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="formation-justification">Justification professionnelle</label>
+            <textarea id="formation-justification" class="form-control" required></textarea>
+          </div>
+
+          <div style="display: flex; gap: 15px;">
+            <button type="submit" class="btn">Soumettre la demande</button>
+            <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Page Mon dossier -->
+      <div id="mon-dossier" class="page">
+        <h2 class="page-title">Mon dossier de formation</h2>
+
+        <div class="card">
+          <div class="profile-info">
+            <div class="profile-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-details">
+              <h3>Jean Dupont</h3>
+              <p>Service : Développement</p>
+              <p>Formations suivies : 5</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Mes demandes en cours</h3>
+
+          <div class="formation-item">
+            <div class="formation-title">Formation Angular Avancé</div>
+            <div class="formation-info">
+              <span>Durée : 21 heures</span>
+              <span>Du 15/04/2025 au 17/04/2025</span>
+            </div>
+            <div class="formation-info" style="margin-top: 5px;">
+              <span>Organisme : TechFormation</span>
+              <span class="formation-status status-pending">En attente</span>
+            </div>
+          </div>
+
+          <div class="formation-item">
+            <div class="formation-title">Management d'équipe Agile</div>
+            <div class="formation-info">
+              <span>Durée : 14 heures</span>
+              <span>Du 25/05/2025 au 26/05/2025</span>
+            </div>
+            <div class="formation-info" style="margin-top: 5px;">
+              <span>Organisme : AgileConseil</span>
+              <span class="formation-status status-approved">Approuvée</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Historique des formations</h3>
+
+          <div class="formation-item">
+            <div class="formation-title">JavaScript ES6+</div>
+            <div class="formation-info">
+              <span>Durée : 14 heures</span>
+              <span>Du 10/01/2025 au 11/01/2025</span>
+            </div>
+            <div class="formation-info" style="margin-top: 5px;">
+              <span>Organisme : CodeMasters</span>
+              <span class="formation-status status-completed">Terminée</span>
+            </div>
+          </div>
+
+          <div class="formation-item">
+            <div class="formation-title">RGPD et sécurité des données</div>
+            <div class="formation-info">
+              <span>Durée : 7 heures</span>
+              <span>Le 05/12/2024</span>
+            </div>
+            <div class="formation-info" style="margin-top: 5px;">
+              <span>Organisme : DataSecurity</span>
+              <span class="formation-status status-completed">Terminée</span>
+            </div>
+          </div>
+
+          <div class="formation-item">
+            <div class="formation-title">Gestion de projet avancée</div>
+            <div class="formation-info">
+              <span>Durée : 21 heures</span>
+              <span>Du 15/09/2024 au 17/09/2024</span>
+            </div>
+            <div class="formation-info" style="margin-top: 5px;">
+              <span>Organisme : PMExperts</span>
+              <span class="formation-status status-completed">Terminée</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Fonction pour afficher le formulaire de demande de formation
+    function showDemandeFormationForm() {
+      document.getElementById('demande-formation').classList.add('active');
+      document.getElementById('mon-dossier').classList.remove('active');
+
+      // Mise à jour des classes active dans le menu
+      const menuItems = document.querySelectorAll('.menu-item');
+      menuItems.forEach((item, index) => {
+        if (index === 0) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    // Fonction pour afficher la page Mon dossier
+    function showDossierPage() {
+      document.getElementById('mon-dossier').classList.add('active');
+      document.getElementById('demande-formation').classList.remove('active');
+
+      // Mise à jour des classes active dans le menu
+      const menuItems = document.querySelectorAll('.menu-item');
+      menuItems.forEach((item, index) => {
+        if (index === 1) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    // Afficher la page de demande de formation par défaut
+    document.addEventListener('DOMContentLoaded', function () {
+      showDemandeFormationForm();
+
+      // Gestion du formulaire
+      document.getElementById('formation-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Votre demande de formation a été soumise avec succès !');
+        this.reset();
+      });
+    });
+  </script>
+</body>
+
+</html>

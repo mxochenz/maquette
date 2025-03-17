@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portail Gestionnaire - Gestion des Stagiaires</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary: #3498db;
+      --primary-dark: #2980b9;
+      --secondary: #2c3e50;
+      --light: #ecf0f1;
+      --warning: #e74c3c;
+      --success: #2ecc71;
+      --pending: #f39c12;
+    }
+
+    body {
+      background-color: #f5f7fa;
+    }
+
+    header {
+      background-color: var(--secondary);
+      color: white;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      margin-right: 1rem;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+    }
+
+    .sidebar-menu-item {
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar-menu-link {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      border-radius: 4px;
+      color: var(--secondary);
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .sidebar-menu-link:hover {
+      background-color: #f0f0f0;
+    }
+
+    .sidebar-menu-link.active {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .content {
+      flex: 1;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+    }
+
+    .page-title {
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #eee;
+      color: var(--secondary);
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      padding: 1rem;
+      border-left: 4px solid var(--primary);
+    }
+
+    .stat-title {
+      font-size: 0.875rem;
+      color: #777;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 1rem;
+    }
+
+    .tab {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      color: #777;
+    }
+
+    .tab.active {
+      border-bottom-color: var(--primary);
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: left;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    td {
+      padding: 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .status-badge.pending {
+      background-color: rgba(243, 156, 18, 0.1);
+      color: var(--pending);
+    }
+
+    .status-badge.validated {
+      background-color: rgba(46, 204, 113, 0.1);
+      color: var(--success);
+    }
+
+    .status-badge.rejected {
+      background-color: rgba(231, 76, 60, 0.1);
+      color: var(--warning);
+    }
+
+    .action-btn {
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-success {
+      background-color: var(--success);
+      color: white;
+    }
+
+    .btn-warning {
+      background-color: var(--warning);
+      color: white;
+    }
+
+    .btn-danger {
+      background-color: var(--warning);
+      color: white;
+    }
+
+    .search-container {
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.875rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      border-radius: 8px;
+      width: 500px;
+      max-width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #777;
+    }
+
+    .modal-body {
+      padding: 1rem;
+    }
+
+    .modal-footer {
+      padding: 1rem;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--secondary);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.875rem;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .document-preview {
+      margin-top: 1rem;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 1rem;
+    }
+
+    .document-preview img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 992px) {
+      .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">Centre de Formation</div>
+      <div class="user-info">
+        <span>Jean Dupont</span>
+        <div class="user-avatar">JD</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="sidebar">
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link active">Tableau de bord</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Absences & Retards</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Pièces justificatives</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Courriers d'alerte</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Dossiers stagiaires</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Paramètres</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h1 class="page-title">Tableau de bord Gestionnaire</h1>
+
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-title">Absences en attente</div>
+          <div class="stat-value">12</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Retards en attente</div>
+          <div class="stat-value">8</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Justificatifs à vérifier</div>
+          <div class="stat-value">15</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Alertes générées</div>
+          <div class="stat-value">5</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active">Absences & Retards</div>
+        <div class="tab">Justificatifs</div>
+        <div class="tab">Alertes</div>
+      </div>
+
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Rechercher un stagiaire...">
+        <button class="action-btn btn-primary">Rechercher</button>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Nom du stagiaire</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th>Durée</th>
+              <th>Justificatif</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sophie Martin</td>
+              <td>Absence</td>
+              <td>05/03/2025</td>
+              <td>1 jour</td>
+              <td>Oui</td>
+              <td><span class="status-badge pending">En attente</span></td>
+              <td>
+                <button class="action-btn btn-primary" onclick="openModal('viewJustificative')">Voir</button>
+                <button class="action-btn btn-success">Valider</button>
+                <button class="action-btn btn-danger">Refuser</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Lucas Bernard</td>
+              <td>Retard</td>
+              <td>04/03/2025</td>
+              <td>45 min</td>
+              <td>Oui</td>
+              <td><span class="status-badge pending">En attente</span></td>
+              <td>
+                <button class="action-btn btn-primary" onclick="openModal('viewJustificative')">Voir</button>
+                <button class="action-btn btn-success">Valider</button>
+                <button class="action-btn btn-danger">Refuser</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Emma Petit</td>
+              <td>Absence</td>
+              <td>03/03/2025</td>
+              <td>2 jours</td>
+              <td>Oui</td>
+              <td><span class="status-badge validated">Validée</span></td>
+              <td>
+                <button class="action-btn btn-primary" onclick="openModal('viewJustificative')">Voir</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Thomas Durand</td>
+              <td>Absence</td>
+              <td>01/03/2025</td>
+              <td>1 jour</td>
+              <td>Non</td>
+              <td><span class="status-badge rejected">Refusée</span></td>
+              <td>
+                <button class="action-btn btn-primary" onclick="openModal('generateAlert')">Alerter</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal pour visualiser un justificatif -->
+  <div id="viewJustificative" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Justificatif d'absence</h2>
+        <button class="modal-close" onclick="closeModal('viewJustificative')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Stagiaire:</label>
+          <p>Sophie Martin</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type:</label>
+          <p>Absence</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Date:</label>
+          <p>05/03/2025</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Motif:</label>
+          <p>Maladie</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Document:</label>
+          <div class="document-preview">
+            <img src="/api/placeholder/400/320" alt="Justificatif d'absence">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Commentaire:</label>
+          <textarea class="form-control" placeholder="Ajouter un commentaire..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn btn-danger" onclick="closeModal('viewJustificative')">Refuser</button>
+        <button class="action-btn btn-success" onclick="closeModal('viewJustificative')">Valider</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal pour générer une alerte -->
+  <div id="generateAlert" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Générer un courrier d'alerte</h2>
+        <button class="modal-close" onclick="closeModal('generateAlert')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Stagiaire:</label>
+          <p>Thomas Durand</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type d'alerte:</label>
+          <select class="form-control">
+            <option>Absence non justifiée</option>
+            <option>Retards répétés</option>
+            <option>Pièce manquante</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Détails:</label>
+          <textarea class="form-control"
+            rows="5">Nous vous informons que votre absence du 01/03/2025 n'a pas été justifiée. Conformément au règlement intérieur, nous vous demandons de fournir un justificatif dans les plus brefs délais.</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Moyen d'envoi:</label>
+          <div>
+            <input type="checkbox" id="email" checked>
+            <label for="email">Email</label>
+          </div>
+          <div>
+            <input type="checkbox" id="courrier">
+            <label for="courrier">Courrier postal</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn btn-primary" onclick="closeModal('generateAlert')">Annuler</button>
+        <button class="action-btn btn-warning" onclick="closeModal('generateAlert')">Générer et envoyer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>

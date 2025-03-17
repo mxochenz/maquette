@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Stagiaire - Gestion de Formation</title>
+  <style>
+    /* Variables CSS pour faciliter la cohérence */
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2980b9;
+      --success-color: #27ae60;
+      --danger-color: #e74c3c;
+      --warning-color: #f39c12;
+      --light-color: #ecf0f1;
+      --dark-color: #2c3e50;
+      --border-radius: 5px;
+      --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px 0;
+      box-shadow: var(--box-shadow);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--light-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: var(--dark-color);
+    }
+
+    .user-name {
+      font-weight: bold;
+    }
+
+    .logout-btn {
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 5px 10px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .logout-btn:hover {
+      background-color: white;
+      color: var(--primary-color);
+    }
+
+    /* Navigation */
+    nav {
+      background-color: white;
+      box-shadow: var(--box-shadow);
+      margin-bottom: 20px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-tabs li {
+      flex: 1;
+    }
+
+    .nav-tabs a {
+      display: block;
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--dark-color);
+      font-weight: bold;
+      transition: all 0.3s;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-tabs a:hover {
+      background-color: var(--light-color);
+    }
+
+    .nav-tabs a.active {
+      border-bottom: 3px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    /* Main Content Sections */
+    .section {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--dark-color);
+      border-bottom: 1px solid var(--light-color);
+      padding-bottom: 10px;
+    }
+
+    /* Upload Section */
+    .upload-area {
+      border: 2px dashed var(--primary-color);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: rgba(52, 152, 219, 0.05);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .upload-area:hover {
+      background-color: rgba(52, 152, 219, 0.1);
+    }
+
+    .upload-icon {
+      font-size: 48px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .upload-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .upload-btn:hover {
+      background-color: var(--secondary-color);
+    }
+
+    /* Files List */
+    .files-list {
+      margin-top: 20px;
+    }
+
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid var(--light-color);
+    }
+
+    .file-item:last-child {
+      border-bottom: none;
+    }
+
+    .file-icon {
+      color: var(--primary-color);
+      margin-right: 10px;
+    }
+
+    .file-name {
+      flex: 1;
+    }
+
+    .file-status {
+      padding: 5px 10px;
+      border-radius: var(--border-radius);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .status-pending {
+      background-color: var(--warning-color);
+      color: white;
+    }
+
+    .status-approved {
+      background-color: var(--success-color);
+      color: white;
+    }
+
+    .status-rejected {
+      background-color: var(--danger-color);
+      color: white;
+    }
+
+    .file-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .file-action-btn {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--dark-color);
+      font-size: 16px;
+    }
+
+    /* Alerts Section */
+    .alert-item {
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: var(--border-radius);
+      border-left: 4px solid;
+      display: flex;
+      align-items: center;
+    }
+
+    .alert-icon {
+      margin-right: 15px;
+      font-size: 24px;
+    }
+
+    .alert-content {
+      flex: 1;
+    }
+
+    .alert-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .alert-date {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .alert-info {
+      background-color: rgba(52, 152, 219, 0.1);
+      border-left-color: var(--primary-color);
+    }
+
+    .alert-info .alert-icon {
+      color: var(--primary-color);
+    }
+
+    .alert-warning {
+      background-color: rgba(243, 156, 18, 0.1);
+      border-left-color: var(--warning-color);
+    }
+
+    .alert-warning .alert-icon {
+      color: var(--warning-color);
+    }
+
+    .alert-danger {
+      background-color: rgba(231, 76, 60, 0.1);
+      border-left-color: var(--danger-color);
+    }
+
+    .alert-danger .alert-icon {
+      color: var(--danger-color);
+    }
+
+    /* Formation Section */
+    .formation-search {
+      display: flex;
+      margin-bottom: 20px;
+      gap: 10px;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 14px;
+    }
+
+    .search-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .formations-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .formation-card {
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .formation-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .formation-img {
+      width: 100%;
+      height: 150px;
+      background-color: var(--light-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark-color);
+    }
+
+    .formation-body {
+      padding: 15px;
+    }
+
+    .formation-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .formation-details {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .formation-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .formation-btn:hover {
+      background-color: var(--secondary-color);
+    }
+
+    /* Dossier Section */
+    .dossier-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .summary-card {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .summary-value {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .summary-label {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .dossier-timeline {
+      position: relative;
+      margin-left: 20px;
+      padding-left: 20px;
+      border-left: 2px solid var(--light-color);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .timeline-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .timeline-description {
+      font-size: 14px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-tabs {
+        flex-direction: column;
+      }
+
+      .formations-list {
+        grid-template-columns: 1fr;
+      }
+
+      .dossier-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .user-info {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .file-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <div class="logo">Centre de Formation</div>
+      <div class="user-info">
+        <div class="user-avatar">JS</div>
+        <div>
+          <div class="user-name">Jean Stagiaire</div>
+          <div>Formation Développeur Web</div>
+        </div>
+        <button class="logout-btn">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <ul class="nav-tabs">
+        <li><a href="#" class="active">Dépôt de justificatifs</a></li>
+        <li><a href="#">Alertes</a></li>
+        <li><a href="#">Formations</a></li>
+        <li><a href="#">Suivi de dossier</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Dépôt de justificatifs Section -->
+    <section class="section">
+      <h2 class="section-title">Dépôt de justificatifs</h2>
+
+      <div class="upload-area" id="dropZone">
+        <div class="upload-icon">📁</div>
+        <p>Glissez et déposez vos fichiers ici ou</p>
+        <input type="file" id="fileInput" class="file-input" multiple>
+        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Parcourir</button>
+      </div>
+
+      <div class="files-list">
+        <h3>Documents uploadés</h3>
+        <div class="file-item">
+          <span class="file-icon">📄</span>
+          <span class="file-name">Carte d'identité.pdf</span>
+          <span class="file-status status-approved">Validé</span>
+          <div class="file-actions">
+            <button class="file-action-btn">🔍</button>
+            <button class="file-action-btn">🗑️</button>
+          </div>
+        </div>
+        <div class="file-item">
+          <span class="file-icon">📄</span>
+          <span class="file-name">Diplôme.pdf</span>
+          <span class="file-status status-pending">En attente</span>
+          <div class="file-actions">
+            <button class="file-action-btn">🔍</button>
+            <button class="file-action-btn">🗑️</button>
+          </div>
+        </div>
+        <div class="file-item">
+          <span class="file-icon">📄</span>
+          <span class="file-name">CV.pdf</span>
+          <span class="file-status status-rejected">Refusé</span>
+          <div class="file-actions">
+            <button class="file-action-btn">🔍</button>
+            <button class="file-action-btn">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alertes Section -->
+    <section class="section" style="display: none;">
+      <h2 class="section-title">Alertes</h2>
+
+      <div class="alert-item alert-danger">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <div class="alert-title">Document manquant: Attestation de domicile</div>
+          <div>Vous devez fournir une attestation de domicile de moins de 3 mois pour compléter votre dossier.</div>
+          <div class="alert-date">Il y a 2 jours</div>
+        </div>
+      </div>
+
+      <div class="alert-item alert-warning">
+        <div class="alert-icon">📌</div>
+        <div class="alert-content">
+          <div class="alert-title">Rappel: Session de formation</div>
+          <div>Votre prochaine session de formation commence le 15 mars 2025.</div>
+          <div class="alert-date">Il y a 1 semaine</div>
+        </div>
+      </div>
+
+      <div class="alert-item alert-info">
+        <div class="alert-icon">📋</div>
+        <div class="alert-content">
+          <div class="alert-title">Évaluation disponible</div>
+          <div>L'évaluation pour le module "HTML & CSS" est maintenant disponible.</div>
+          <div class="alert-date">Il y a 2 semaines</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formations Section -->
+    <section class="section" style="display: none;">
+      <h2 class="section-title">Demande d'inscription aux formations</h2>
+
+      <div class="formation-search">
+        <input type="text" class="search-input" placeholder="Rechercher une formation...">
+        <button class="search-btn">Rechercher</button>
+      </div>
+
+      <div class="formations-list">
+        <div class="formation-card">
+          <div class="formation-img">Formation JavaScript</div>
+          <div class="formation-body">
+            <h3 class="formation-title">JavaScript Avancé</h3>
+            <div class="formation-details">
+              <span>Durée: 5 jours</span>
+              <span>Début: 10/04/2025</span>
+            </div>
+            <p>Apprenez les concepts avancés de JavaScript et les frameworks modernes.</p>
+            <a href="#" class="formation-btn">S'inscrire</a>
+          </div>
+        </div>
+
+        <div class="formation-card">
+          <div class="formation-img">Formation React</div>
+          <div class="formation-body">
+            <h3 class="formation-title">React.js Fondamentaux</h3>
+            <div class="formation-details">
+              <span>Durée: 4 jours</span>
+              <span>Début: 25/04/2025</span>
+            </div>
+            <p>Découvrez la bibliothèque React.js et créez des applications web dynamiques.</p>
+            <a href="#" class="formation-btn">S'inscrire</a>
+          </div>
+        </div>
+
+        <div class="formation-card">
+          <div class="formation-img">Formation Node.js</div>
+          <div class="formation-body">
+            <h3 class="formation-title">Node.js & Express</h3>
+            <div class="formation-details">
+              <span>Durée: 3 jours</span>
+              <span>Début: 15/05/2025</span>
+            </div>
+            <p>Développez des applications backend avec Node.js et le framework Express.</p>
+            <a href="#" class="formation-btn">S'inscrire</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Suivi de dossier Section -->
+    <section class="section" style="display: none;">
+      <h2 class="section-title">Suivi de votre dossier</h2>
+
+      <div class="dossier-summary">
+        <div class="summary-card">
+          <div class="summary-value">80%</div>
+          <div class="summary-label">Complétion du dossier</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-value">3/5</div>
+          <div class="summary-label">Documents validés</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-value">1</div>
+          <div class="summary-label">Document(s) manquant(s)</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-value">1</div>
+          <div class="summary-label">Formation(s) en cours</div>
+        </div>
+      </div>
+
+      <h3>Historique des actions</h3>
+      <div class="dossier-timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">08/03/2025</div>
+          <div class="timeline-title">Document refusé</div>
+          <div class="timeline-description">Votre CV a été refusé. Motif: format incorrect, veuillez le soumettre en
+            PDF.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">05/03/2025</div>
+          <div class="timeline-title">Document validé</div>
+          <div class="timeline-description">Votre carte d'identité a été validée.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">01/03/2025</div>
+          <div class="timeline-title">Inscription confirmée</div>
+          <div class="timeline-description">Votre inscription à la formation "Développeur Web" a été confirmée.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">25/02/2025</div>
+          <div class="timeline-title">Demande d'inscription</div>
+          <div class="timeline-description">Vous avez soumis une demande d'inscription à la formation "Développeur Web".
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Simple tab navigation
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabs = document.querySelectorAll('.nav-tabs a');
+      const sections = document.querySelectorAll('main .section');
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          // Remove active class from all tabs
+          tabs.forEach(t => t.classList.remove('active'));
+
+          // Add active class to clicked tab
+          this.classList.add('active');
+
+          // Hide all sections
+          sections.forEach(s => s.style.display = 'none');
+
+          // Show selected section
+          sections[index].style.display = 'block';
+        });
+      });
+
+      // Initialize first tab as active
+      sections[0].style.display = 'block';
+    });
+
+    // Simple drag and drop file upload visualization
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropZone = document.getElementById('dropZone');
+      const fileInput = document.getElementById('fileInput');
+
+      // Prevent default behaviors
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      // Highlight drop zone when file is dragged over it
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, highlight, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+      });
+
+      function highlight() {
+        dropZone.style.backgroundColor = 'rgba(52, 152, 219, 0.2)';
+        dropZone.style.borderColor = '#2980b9';
+      }
+
+      function unhighlight() {
+        dropZone.style.backgroundColor = 'rgba(52, 152, 219, 0.05)';
+        dropZone.style.borderColor = '#3498db';
+      }
+
+      // Handle file drop (this would just be a visual demo, not actual upload)
+      dropZone.addEventListener('drop', handleDrop, false);
+
+      function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+
+        // This would be where you'd handle the files, but for the demo just alert
+        alert(`${files.length} fichier(s) sélectionné(s). Dans une implémentation réelle, ces fichiers seraient maintenant téléchargés.`);
+      }
+
+      // Handle file input selection
+      fileInput.addEventListener('change', function () {
+        // This would be where you'd handle the files, but for the demo just alert
+        alert(`${this.files.length} fichier(s) sélectionné(s). Dans une implémentation réelle, ces fichiers seraient maintenant téléchargés.`);
+      });
+    });
+  </script>
+</body>
+
+</html>

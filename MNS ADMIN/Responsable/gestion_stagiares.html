@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsable Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="responsable_dashboard.html">Accueil</a></li>
+      <li><a href="gestion_stagiaires.html">Gérer les stagiaires</a></li>
+      <li><a href="suivi_absences.html">Suivi des absences</a></li>
+      <li><a href="gestion_documents.html">Validation des documents</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>Gestion des Stagiaires</h2>
+    <form action="ajout_stagiaire.php" method="POST">
+      <label>Nom :</label>
+      <input type="text" name="nom" required>
+      <label>Email :</label>
+      <input type="email" name="email" required>
+      <button type="submit">Ajouter</button>
+    </form>
+
+    <h3>Liste des stagiaires</h3>
+    <table>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Formation</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td>Paul Martin</td>
+        <td>paul@example.com</td>
+        <td>Dév Web</td>
+        <td><button>Modifier</button> <button>Supprimer</button></td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>

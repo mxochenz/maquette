@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Déclaration d’Absence</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Déclaration d’Absence / Retard</h2>
+    <form action="submit_absence.php" method="POST" enctype="multipart/form-data">
+      <label>Type :</label>
+      <select name="type">
+        <option value="absence">Absence</option>
+        <option value="retard">Retard</option>
+      </select>
+
+      <label>Date :</label>
+      <input type="date" name="date" required>
+
+      <label>Motif :</label>
+      <textarea name="motif" required></textarea>
+
+      <label>Justificatif (PDF, JPG) :</label>
+      <input type="file" name="justificatif" accept=".pdf,.jpg,.png">
+
+      <button type="submit">Soumettre</button>
+    </form>
+  </div>
+</body>
+
+</html>

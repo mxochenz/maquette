@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal Changement d'Image de Profil</title>
+  <style>
+    /* Styles généraux */
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    /* Styles pour la modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      max-width: 90%;
+      padding: 20px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .close-button:hover {
+      color: #333;
+    }
+
+    .modal-body {
+      margin-bottom: 20px;
+    }
+
+    .profile-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #eee;
+      margin-bottom: 15px;
+    }
+
+    .upload-btn-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .btn {
+      border: 2px solid #4a90e2;
+      color: white;
+      background-color: #4a90e2;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .upload-btn-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .info-text {
+      color: #666;
+      font-size: 12px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    }
+
+    .save-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .cancel-btn {
+      background-color: #f2f2f2;
+      color: #333;
+      border: 1px solid #ddd;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Bouton pour ouvrir la modal (démonstration) */
+    .open-modal-btn {
+      margin: 20px;
+      padding: 10px 20px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Bouton pour ouvrir la modal (pour démonstration) -->
+  <button class="open-modal-btn" onclick="openModal()">Modifier l'image de profil</button>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Changer votre photo de profil</h3>
+        <button class="close-button" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="profile-preview">
+          <img id="profileImage" class="profile-image" src="https://via.placeholder.com/150" alt="Photo de profil">
+
+          <div class="upload-btn-wrapper">
+            <button class="btn">Sélectionner une image</button>
+            <input type="file" name="profileImage" accept="image/*" onchange="previewImage(event)">
+          </div>
+
+          <p class="info-text">Formats acceptés: JPG, PNG. Taille max: 5MB</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="cancel-btn" onclick="closeModal()">Annuler</button>
+        <button class="save-btn" onclick="saveImage()">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Fonction pour ouvrir la modal
+    function openModal() {
+      document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    // Fonction pour fermer la modal
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    // Fonction pour prévisualiser l'image sélectionnée
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        // Vérifier si le fichier est une image
+        if (!file.type.match('image.*')) {
+          alert('Veuillez sélectionner une image.');
+          return;
+        }
+
+        // Vérifier la taille du fichier (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          alert('La taille de l\'image ne doit pas dépasser 5MB.');
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('profileImage').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Fonction pour simuler la sauvegarde de l'image
+    function saveImage() {
+      // Ici, vous pourriez envoyer l'image au serveur via AJAX
+      alert('Photo de profil mise à jour avec succès!');
+      closeModal();
+    }
+
+    // Fermer la modal si on clique en dehors
+    window.onclick = function (event) {
+      const modal = document.getElementById('modalOverlay');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+
+</html>
