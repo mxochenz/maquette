@@ -1,198 +1,70 @@
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  border-top: 5px solid red;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(30, 30, 30);
+  margin: 0;
 }
 
-header,
-footer {
-  background-color: #dedede;
+a {
+  text-decoration: none;
+  color: black;
 }
 
-/* Header */
-header .header_box {
+header {
+  box-sizing: border-box;
+  height: 70px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-}
-header .brand {
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  gap: 10px;
-  margin-left: 10px;
+  background-color: gray;
+  padding: 15px;
 }
 
-header .info {
-  display: flex;
-  justify-content: right;
-}
-
-header .info ul li {
-  display: inline-block;
-  padding: 10px;
-  margin-right: 10px;
-}
-
-/* Main Section */
-main .grid {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  height: calc(100vh - 130px);
-}
-.fa-2x {
-  font-size: 2em;
-}
-.fa {
-  position: relative;
-  display: table-cell;
-  width: 60px;
-  height: 36px;
-  text-align: center;
+header img {
+  width: 40px;
+  border-radius: 50%;
   vertical-align: middle;
+}
+header div:first-of-type span {
+  color: white;
+  font-weight: 900;
   font-size: 20px;
 }
 
-main .sidebar nav:hover,
-main .sidebar nav {
-  width: fit-content;
-  overflow: visible;
-}
-main .sidebar nav {
-  background-color: #34bb99;
-  width: 60px;
-  border-right: 1px solid #1b755f;
-  overflow: hidden;
+nav {
   position: absolute;
-  height: calc(100vh - 130px);
-  vertical-align: middle;
-  /* -webkit-transition: width 0.05s linear; */
-  transition: width 5ms ease-out;
-  /* transform: translateZ(0) scale(1, 1); */
-}
-main .sidebar nav li {
-  position: relative;
-  display: block;
-  width: 200px;
-  padding-top: 40px;
+  left: -120px;
+  background-color: gray;
+  height: calc(100% - 70px);
 }
 
-main .sidebar nav li > a {
-  position: relative;
-  display: table;
-  border-collapse: collapse;
-  border-spacing: 0;
-  text-decoration: none;
-  color: rgb(54, 54, 54);
-  padding: 10px;
-  /* transform: translateZ(0) scale(1, 1);
-  -webkit-transition: all 0.1s linear;*/
-  transition: all 0.1s linear;
-  width: 100%;
-}
-
-main .sidebar nav .nav-text {
-  position: relative;
-  display: table-cell;
-  vertical-align: middle;
-}
-
-main .sidebar nav > ul.logout {
-  position: absolute;
+nav:hover {
   left: 0;
-  bottom: 40px;
+  transition: all 0.2s;
 }
 
-main .sidebar nav li a:hover,
-main .sidebar nav li.active > a,
-li.active a {
-  color: #fff;
-  background-color: #1b755f;
-}
-
-/* main content */
-main .content {
-  position: absolute;
-  width: 100%;
-  margin: 0 60px 0 120px;
-  z-index: -1;
-}
-
-/* Classes styles */
-.list_style_none {
+nav > ul {
+  text-align: right;
   list-style-type: none;
-  padding: 0;
 }
 
-#logoSite {
-  width: 100px;
+nav ul li.active {
+  background-color: rgb(193, 193, 193);
 }
-
-/* Tableau */
-table {
-  width: 1000px;
-  border-collapse: collapse;
-  margin: 20px 0;
-}
-
-table caption {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-table th,
-table td {
+nav ul li a {
+  font-size: 20px;
+  display: block;
   padding: 10px;
-  border: 1px solid #dedede;
-  text-align: left;
+}
+nav ul li a i {
+  font-size: 30px;
+  color: black;
+  padding: 10px;
 }
 
-table th {
-  background-color: #f8f8f8;
+main {
+  padding: 0 50px;
 }
 
-/* Media Queries */
-/* Palier > 500px */
-@media (min-width: 500px) {
-  body {
-    border-top: 5px solid orange;
-  }
-}
-
-/* Palier > 768px */
-@media (min-width: 768px) {
-  body {
-    border-top: 5px solid green;
-  }
-}
-
-/* Palier > 992px */
-@media (min-width: 992px) {
-  body {
-    border-top: 5px solid blue;
-  }
-}
-
-/* Palier > 1199px */
-@media (min-width: 1199px) {
-  body {
-    border-top: 5px solid indigo;
-  }
-}
-
-/* Palier > 1400px */
-@media (min-width: 1400px) {
-  body {
-    border-top: 5px solid violet;
-  }
+.container {
+  width: 1440px;
+  margin: 0 auto;
 }

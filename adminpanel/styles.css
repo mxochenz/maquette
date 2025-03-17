@@ -28,8 +28,9 @@ header {
 }
 
 header img {
-  width: 50px;
+  width: 80px;
   border-radius: 50%;
+  mix-blend-mode: lighten;
 }
 
 header nav ul li {
