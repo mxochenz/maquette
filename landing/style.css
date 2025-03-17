@@ -1,0 +1,370 @@
+/* Define CSS Variables */
+:root {
+  --primary-color: #FF6600;
+  --secondary-color: #10152E;
+  --text-color: #1e1e1e;
+  --background-color: #f4f4f4;
+  --white: #ffffff;
+  --black: #000000;
+  --font-family: Arial, sans-serif;
+}
+
+/* Base mobile styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  background-color: var(--background-color);
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+
+/* Header Styles */
+.header {
+  position: relative;
+  background-color: var(--secondary-color);
+  padding: 10px 36px;
+}
+
+.header__container {
+  width: 100%;
+  max-width: 1200px;
+  height: 60px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  width: 100px;
+  height: auto;
+}
+
+.nav__links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__link {
+  color: var(--white);
+  font-size: 16px;
+}
+
+.header__hamburger {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 2rem;
+  z-index: 1000;
+}
+
+.header__container .nav__links,
+.header__container .cta {
+  display: none;
+}
+
+/* Dropdown Navigation Styles */
+.dropdown__nav {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 60px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #10152E;
+  backdrop-filter: blur(15px);
+  overflow: hidden;
+  border-radius: 8px;
+  z-index: 999;
+}
+
+.dropdown__nav.active {
+  display: block;
+}
+
+.dropdown__nav .nav__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.dropdown__nav .nav__item {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown__nav .nav__link {
+  color: var(--white);
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+}
+
+.dropdown__nav .cta--secondary {
+  display: block;
+  text-align: center;
+}
+
+
+/* Call to Action Styles */
+.cta {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.cta--secondary {
+  background-color: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  opacity: 0.94;
+  color: var(--white);
+  padding: 50px 36px;
+  text-align: center;
+  min-height: 80vh;
+}
+
+.hero__title {
+  font-size: 3rem;
+}
+
+.hero__subtitle {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hero__description {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* About Section */
+.about__container {
+  display: flex;
+  flex-direction: column;
+  padding: 36px;
+}
+
+.about__img {
+  margin-bottom: 20px;
+  display: none;
+}
+
+.about__title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.about__subtitle {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+.about__text {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+/* Features Section */
+.features__container {
+  padding: 64px;
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.features__title {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.features__description {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.features__cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.features__card {
+  background-color: var(--white);
+  color: var(--black);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.features__card-image img {
+  width: 100%;
+  height: auto;
+}
+
+.features__card-title {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.features__card-description {
+  font-size: 16px;
+  margin-top: 10px;
+  color: #757575;
+}
+
+/* Footer Section */
+.footer__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer__top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 26px;
+  gap: 1rem;
+  padding: 32px;
+}
+
+.footer__logo-social {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.footer__social-icons {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+}
+
+.footer__social-icon {
+  color: var(--secondary-color);
+  font-size: 30px;
+}
+
+.footer__nav {
+  display: flex;
+}
+
+.footer__links {
+  list-style: none;
+}
+
+.footer__item {
+  margin-right: 15px;
+}
+
+.footer__link {
+  color: var(--secondary-color);
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.footer__link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer__bottom {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  text-align: center;
+  font-size: 15px;
+  padding: 35px 18px;
+}
+
+/* Media Queries */
+@media screen and (min-width: 600px) {
+  .header__container {
+    flex-direction: row;
+  }
+
+  .header__hamburger {
+    display: none;
+  }
+
+  .header__nav-wrapper {
+    display: flex;
+    position: static;
+    padding: 0;
+    flex-direction: row;
+  }
+
+  .nav__links {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .nav__item {
+    margin: 0 15px 0 0;
+  }
+
+  .features__cards {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .features__card {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .about__container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .about__img {
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  .about__content {
+    flex: 2;
+  }
+}

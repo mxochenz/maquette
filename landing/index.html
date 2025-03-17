@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MNS ADMIN | Accueil</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header__container">
+      <a href="/index.html" class="header__logo-link">
+        <img class="header__logo" src="logo.svg" alt="logo mns" width="100px">
+      </a>
+
+      <nav class="nav">
+        <ul class="nav__links">
+          <li class="nav__item"><a href="#" class="nav__link">Accueil</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">À Propos</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">Fonctionnalités</a></li>
+        </ul>
+      </nav>
+
+
+
+      <!-- Bouton hamburger -->
+      <button class="header__hamburger">
+        <i id="openMenu" class="fas fa-bars"></i>
+        <i id="closeMenu" class="fa-solid fa-xmark"></i>
+      </button>
+
+
+    </div>
+    <nav class="dropdown__nav">
+      <ul class="nav__links">
+        <li class="nav__item"><a href="#" class="nav__link">Accueil</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">À Propos</a></li>
+        <li class="nav__item"><a href="#" class="nav__link">Fonctionnalités</a></li>
+        <li><a class="cta cta--secondary" href="#">Connexion</a></li>
+      </ul>
+    </nav>
+
+
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero__container">
+        <h1 class="hero__title">MNS ADMIN</h1>
+        <span class="hero__subtitle">Gérez, Suivez, Réussissez</span>
+        <p class="hero__description">Une plateforme complète pour gérer inscriptions, parcours et absences</p>
+        <a class="cta cta--primary" href="#">Connexion</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="container">
+      <div class="about__container">
+        <div class="about__img">
+          <img src="#" alt="Image à propos">
+        </div>
+        <div class="about__content">
+          <h2 class="about__title">À PROPOS</h2>
+          <p class="about__subtitle">Une Gestion Simplifiée pour un Suivi Optimisé</p>
+
+          <p class="about__text">Notre application est une solution innovante conçue pour faciliter la gestion des
+            dossiers des stagiaires, depuis l'inscription jusqu'à la fin de leur parcours de formation. Elle permet aux
+            établissements de suivre efficacement les absences, retards et progrès des apprenants, tout en simplifiant
+            les
+            tâches administratives.</p>
+
+          <p class="about__text">Pensée pour les écoles et centres de formation, cette plateforme offre une interface
+            intuitive permettant aux responsables pédagogiques d'accéder à toutes les informations essentielles en temps
+            réel. Grâce à des fonctionnalités avancées de gestion des parcours académiques, améliorez la qualité de
+            votre
+            suivi et offrez des services optimaux à toutes les parties prenantes et optimisez votre temps et
+            l'expérience
+            des étudiants.</p>
+
+          <p class="about__text">Avec notre application, offrez à votre établissement une solution moderne et
+            performante
+            pour accompagner chaque apprenant vers la réussite !</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="features__container">
+        <h2 class="features__title">Des Fonctionnalités Puissantes pour une Gestion Optimisée</h2>
+        <p class="features__description">Suivez les stagiaires, gérez les absences et analysez les performances grâce à
+          des outils intelligents et intuitifs.</p>
+
+        <div class="features__cards">
+          <div class="features__card">
+            <div class="features__card-image">
+              <img src="https://placehold.co/300x200"
+                alt="Illustration d'une personne suivant les absences et retards sur un tableau">
+            </div>
+            <h3 class="features__card-title">Gestion des Absences et Retards</h3>
+            <p class="features__card-description">Suivez en temps réel les absences et retards grâce à un système
+              intelligent. Automatisez les alertes et générez des rapports détaillés pour assurer un meilleur
+              encadrement
+              et accompagner les apprenants vers la réussite.</p>
+          </div>
+
+          <div class="features__card">
+            <div class="features__card-image">
+              <img src="https://placehold.co/300x200"
+                alt="Illustration de tableaux de bord avec graphiques et statistiques">
+            </div>
+            <h3 class="features__card-title">Tableaux de Bord</h3>
+            <p class="features__card-description">Bénéficiez d'une vue d'ensemble sur les performances et la faisabilité
+              des stagiaires grâce à des tableaux de bord dynamiques. Analysez les données en quelques secondes et
+              optimisez la gestion des formations.</p>
+          </div>
+
+          <div class="features__card">
+            <div class="features__card-image">
+              <img src="https://placehold.co/300x200"
+                alt="Illustration d'une personne consultant des dossiers de stagiaires">
+            </div>
+            <h3 class="features__card-title">Suivi Complet des Stagiaires</h3>
+            <p class="features__card-description">Simplifiez la gestion administrative en centralisant toutes les
+              informations des stagiaires, de l'inscription jusqu'à la fin de leur formation. Accédez en un clic à leurs
+              dossiers, parcours académiques et statistiques de présence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__container">
+        <div class="footer__top">
+          <div class="footer__logo-social">
+            <img class="footer__logo" src="logo.svg" alt="logo mns">
+            <div class="footer__social-icons">
+              <a href="#" aria-label="Facebook" class="footer__social-icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter" class="footer__social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn" class="footer__social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="footer__nav">
+            <ul class="footer__links">
+              <li class="footer__item"><a href="#" class="footer__link">Politique de Confidentialité</a></li>
+              <li class="footer__item"><a href="#" class="footer__link">Conditions d'utilisation</a></li>
+              <li class="footer__item"><a href="#" class="footer__link">Mentions Légales</a></li>
+              <li class="footer__item"><a href="#" class="footer__link">Plan du site</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2023 Copyright Garranas José. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
