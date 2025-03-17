@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Accessible avec BEM</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- Navbar avec rôle navigation pour l'accessibilité -->
+  <header class="header">
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
+      <!-- Logo -->
+      <div class="navbar__logo">
+        <a href="/" class="navbar__logo-link">
+          <img src="logo.svg" alt="Logo du site" class="navbar__logo-img">
+        </a>
+      </div>
+
+      <!-- Bouton pour ouvrir le menu (visible en mobile) -->
+      <button class="navbar__menu-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu">
+        <svg class="navbar__icon navbar__icon--menu" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 12H21" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M3 6H21" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M3 18H21" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <!-- Menu de navigation -->
+      <div id="nav-menu" class="navbar__menu">
+        <!-- Bouton pour fermer le menu (visible dans le menu déployé) -->
+        <button class="navbar__close-button" aria-label="Fermer le menu">
+          <svg class="navbar__icon navbar__icon--close" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 6L18 18" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <ul class="navbar__list">
+          <li class="navbar__item">
+            <a href="#accueil" class="navbar__link">Accueil</a>
+          </li>
+          <li class="navbar__item">
+            <a href="#services" class="navbar__link">Services</a>
+          </li>
+          <li class="navbar__item">
+            <a href="#contact" class="navbar__link">Contact</a>
+          </li>
+        </ul>
+
+        <!-- CTA dans le menu mobile -->
+        <a href="#demo" class="navbar__cta">Démo Gratuite</a>
+      </div>
+
+      <!-- CTA -->
+      <a href="#demo" class="navbar__cta">Démo Gratuite</a>
+    </nav>
+  </header>
+
+  <!-- Overlay pour mobile -->
+  <div class="navbar__overlay"></div>
+
+</body>
+
+</html>
