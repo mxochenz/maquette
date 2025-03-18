@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar Menu HTML and CSS</title>
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="avatar">
+        <a href="#"><span class="material-symbols-outlined">
+            notifications</span></a>
+        <a href="#"><img src="moi.png" width="40px" height="40px" alt="image avatar"></a>
+        <span>John DOE</span>
+      </div>
+    </header>
+
+    <aside class="sidebar">
+
+      <div class="nav__header">
+        <a href="">
+          <img src="logo.svg" alt="logo" /></a>
+      </div>
+      <nav class="nav">
+        <ul class="nav__links">
+
+          <li>
+            <a href="#" class="active">
+              <span class="material-symbols-outlined"> dashboard </span>Accueil</a>
+          </li>
+          <li>
+            <a href="#"><span class="material-symbols-outlined"> alarm </span>Retards</a>
+          </li>
+          <li>
+            <a href="#"><span class="material-symbols-outlined"> calendar_clock </span>Absences</a>
+          </li>
+
+          <li>
+            <a href="#"><span class="material-symbols-outlined"> upload_file </span>Documents</a>
+          </li>
+
+          <li>
+            <a href="#"><span class="material-symbols-outlined">
+                notifications_active </span>Notifications</a>
+          </li>
+
+          <li>
+            <a href="#"><span class="material-symbols-outlined"> account_circle </span>Profile</a>
+          </li>
+        </ul>
+
+        <a href="#" id="logout"><span class="material-symbols-outlined"> logout </span>Se Déconnecter</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <section class="main__views">
+        <article class="view__card">
+          <img src="#" width="40px" height="40px" alt="">
+          <h3>Retards</h3>
+          <span>4</span>
+          <span>2 non justifiés</span>
+        </article>
+        <article class="view__card">
+          <img src="#" width="40px" height="40px" alt="">
+          <h3>Retards</h3>
+          <span>4</span>
+          <span>2 non justifiés</span>
+        </article>
+        <article class="view__card">
+          <img src="#" width="40px" height="40px" alt="">
+          <h3>Documents</h3>
+          <span>4</span>
+          <span>2 en attente</span>
+        </article>
+      </section>
+      <section></section>
+
+    </main>
+
+    <footer class="footer">
+      <p>Version 1.0.0</p>
+    </footer>
+  </div>
+</body>
+
+</html>

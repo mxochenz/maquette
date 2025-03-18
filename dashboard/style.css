@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #F0F4FF;
+}
+
+
+/*********** GRID LAYOUT ***************/
+
+/* grid areas */
+.container {
+  min-height: 100vh;
+  display: grid;
+
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer"
+  ;
+
+  grid-template-rows: 0.25fr 3fr 0.25fr;
+  grid-template-columns: 0.1fr 3fr;
+  ;
+}
+
+.header {
+  grid-area: header;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+/********* FIN GRID LAYOUT ***********/
+
+
+/********** HEADER SECTION  **********/
+
+.header {
+  background-color: #10152E;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.avatar {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 3rem;
+}
+
+.avatar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.avatar span {
+  color: #fff;
+}
+
+.avatar img {
+  border-radius: 50%;
+}
+
+
+/*********  ASIDE SECTION ************/
+.sidebar {
+  width: 85px;
+  display: flex;
+  overflow-x: hidden;
+  flex-direction: column;
+  background: #10152E;
+  padding: 25px 20px;
+  transition: all 0.4s ease;
+}
+
+.sidebar:hover {
+  width: 260px;
+}
+
+.sidebar .nav__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar .nav__header img {
+  max-width: 100px;
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.nav__links {
+  list-style: none;
+  margin-top: 20px;
+  height: fit-content;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.nav__links::-webkit-scrollbar {
+  display: none;
+}
+
+.nav__links li a {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 0 20px;
+  color: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 15px 10px;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.nav__links li a.active,
+.nav__links li a:hover {
+  color: #161a2d;
+  background: #fff;
+  border-radius: 4px;
+}
+
+#logout {
+  display: flex;
+  align-items: center;
+  color: #Fff;
+  gap: 0 20px;
+  white-space: nowrap;
+  padding: 10px 10px;
+  text-decoration: none;
+  transition: 0.2s ease;
+  overflow-y: auto;
+  background-color: orangered;
+  border-radius: 4px;
+}
+
+#logout::-webkit-scrollbar {
+  display: none;
+}
+
+#logout:hover {
+  color: #161a2d;
+  background: #fff;
+  border-radius: 4px;
+}
+
+/********* FIN ASIDE ***********/
+
+/********** MAIN SECTION  **********/
+
+.main__views {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+@media (min-width: 766px) {
+  .main__views {
+    flex-direction: row;
+  }
+
+  .view__card {
+    max-width: 50%;
+  }
+
+}
+
+
+
+.view__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 1px solid black;
+  width: 100%;
+}
+
+/********** FIN MAIN SECTION  **********/
+
+
+
+/********** FOOTER  **********/
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #10152E;
+  color: #fff;
+}
+
+/********** FIN FOOTER  **********/
